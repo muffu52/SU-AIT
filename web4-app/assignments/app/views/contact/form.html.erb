@@ -1,0 +1,13 @@
+<div class="container">
+  <br>
+  <% if flash.any?%>
+    <%= render 'layouts/alerts'%>
+  <% end %>
+  <br>
+  <h3 style="text-align: center;">CONTACT US</h3>
+  <br>
+  <div class= "col-md-7" style="margin: 0 auto; text-align: center;">
+    <%= render 'form', complain: @complain%>
+  </div>
+  <br>
+</div>

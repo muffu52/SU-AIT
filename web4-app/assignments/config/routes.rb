@@ -1,0 +1,37 @@
+Rails.application.routes.draw do
+  get 'contact/form'
+  post 'contact/form', to: 'contact#create'
+  root 'site#index'
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth', registrations: 'registrations' }
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # get 'basics', to: 'basics#index'
+  get 'admin/feedback'
+  patch 'admin/feedback', to: 'admin#edit'
+  delete 'admin/feedback', to: 'admin#destroy'
+  get 'admin/committee'
+  post 'admin/committee', to: 'admin#create'
+  patch 'admin/committee', to: 'admin#edit'
+  delete 'admin/committee', to: 'admin#destroy'
+  get 'admin/users'
+  patch 'admin/users'
+  post 'admin/users'
+  get 'problem-sets', to: 'site#problem_sets'
+  get 'basics/news', to: 'basics#news'
+  get 'basics/divide_by_zero', to: 'basics#divide_by_zero'
+  get 'basics/divide', to: 'basics#divide'
+  get 'basics/quotations', to: 'basics#quotations'
+  post 'basics/quotations', to: 'basics#quotations'
+  get 'basics/sql_tasks', to: 'basics#sql_tasks'
+  get 'plan/index'
+  get 'plan/profiles'
+  get 'plan/user_management'
+  get 'plan/documentation'
+  get 'su_information', to: 'su_information#index'
+  post 'su_information', to: 'su_information#create'
+  patch 'su_information', to: 'su_information#edit'
+  delete 'su_information', to: 'su_information#destroy'
+  resources :events
+  get 'past-events', to: 'events#past_events'
+  get 'feedback', to: 'plan#feedback'
+  post 'events/removeImage', to: "events#removeImage"
+end

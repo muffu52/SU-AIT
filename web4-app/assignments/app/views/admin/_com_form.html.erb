@@ -1,0 +1,38 @@
+<%= form_with(model: complain, url: admin_feedback_path) do |form| %>
+  <% if @complain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@complain.errors.count, "error") %> prohibited this form from being updated:</h2>
+      <ul>
+        <% @complain.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div style="text-align:left">
+    <h3>subject: <%= complain.subject %></h3>
+    <br>
+    <h5 style="white-space: pre-wrap;"><%= complain.detail %></h5>
+  </div>
+  <br>
+  <% if complain.com_pics.attached? %>
+    <div class="images" >
+      <% complain.com_pics.each_with_index do |pic, index| %>
+        <span>
+          <%= link_to image_tag(pic), pic, target: "_blank" %>
+          <%= link_to '<i class="fa fa-download" style="color:green;margin-top:5px;font-size:24px"></i>'.html_safe, pic, download: pic.filename%>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+  <br>
+  <% if complain.id %>
+    <%= form.hidden_field :id, value: complain.id%>
+    <%= form.hidden_field :updatedBy, value: current_user.email%>
+    <%= form.hidden_field :status, value: "Completed"%>
+  <% end %>
+  <br>
+  <div class="modal-footer">
+    <%= form.submit 'Submit', class: 'btn btn-su mb-4' %>
+  </div>
+<% end %>
